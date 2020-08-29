@@ -8,8 +8,8 @@ const prefix = "$"
 
 // declaring function
 const checkMessage = (message) => {
-    if (message.author.bot) return
-    if (!message.content.startsWith(prefix)) return
+    if (message.author.bot) return true
+    if (!message.content.startsWith(prefix)) return true
 }
 
 const getUser = (message) => message.mentions.users.last().username
@@ -17,7 +17,7 @@ const getUser = (message) => message.mentions.users.last().username
 const punch = (message) => message.reply(`you punch ${getUser(message)}`)
 
 const botActions = (message) => {
-    checkMessage(message)
+    if(checkMessage(message)) return
 
     const commandBody = message.content.slice(prefix.length)
     const arguments = commandBody.split(" ")
