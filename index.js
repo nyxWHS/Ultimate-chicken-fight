@@ -17,6 +17,7 @@ const checkMessage = (message) => {
 
 const punch = (message) => {
     const dice = roolDice()
+    
     if(dice >= 3)
         message.reply(`You scored ${dice} on the dice.You punched ${getUser(message)}`)
     else
