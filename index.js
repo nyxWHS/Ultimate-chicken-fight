@@ -13,9 +13,7 @@ const checkMessage = (message) => {
 }
 
 const getUser = (message) => message.mentions.users.last().username
-
 const punch = (message) => message.reply(`You scored ${roolDice()} on the dice.You punched ${getUser(message)}`)
-
 const roolDice = () => Math.floor(Math.random() * 6 + 1)
 
 const botActions = (message) => {
