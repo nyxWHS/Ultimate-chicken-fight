@@ -9,11 +9,6 @@ const prefix = "$"
 // declaring function
 const getUser = (array) => array[0]
 
-const ping = (message) => {
-    const timeTaken = Date.now() - message.createdTimestamp
-    message.reply(`Pong! This message had a latency of ${timeTaken}ms.`)
-}
-
 const punch = (message, arguments) => message.reply(`you punch ${getUser(arguments)}`)
 
 const botActions = (message) => {
@@ -24,7 +19,6 @@ const botActions = (message) => {
     const arguments = commandBody.split(" ")
     const command = arguments.shift().toLowerCase()
 
-    if (command === "ping") ping(message)
     if (command === "punch") punch(message, arguments)
 }
 
