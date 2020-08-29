@@ -17,20 +17,20 @@ const checkMessage = (message) => {
 
 const punch = (message) => {
     const dice = roolDice()
-    
+
     if(dice >= 3)
-        message.reply(`You scored ${dice} on the dice.You punched ${getUser(message)}`)
+        message.reply(`Você tirou ${dice} no dado. Você atacou ${getUser(message)}`)
     else
-        message.reply(`You scored ${dice} on the dice. FAIL`)
+        message.reply(`Você tirou ${dice} no dado. Você errou o ataque`)
 }
 
 const defend = (message) => {
     const dice = roolDice()
 
     if(dice >= 5)
-        message.reply(`You scored ${dice} on the dice. You defend ${getUser(message)} atack`) 
+        message.reply(`Você tirou ${dice} no dado. Você defendeu o ataque de ${getUser(message)}`) 
     else
-        message.reply(`You scored ${dice} on the dice. ${getUser(message)} punched you.`)
+        message.reply(`Você tirou ${dice} no dado. Sua defesa é um desastre. ${getUser(message)} atacou você`)
 }
 
 const botActions = (message) => {
