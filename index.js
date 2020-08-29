@@ -7,19 +7,23 @@ const prefix = "$"
 
 
 // declaring function
-const getUser = (array) => array[0]
-
-const punch = (message, arguments) => message.reply(`you punch ${getUser(arguments)}`)
-
-const botActions = (message) => {
+const checkMessage = (message) => {
     if (message.author.bot) return
     if (!message.content.startsWith(prefix)) return
+}
+
+const getUser = (message) => message.mentions.users.last().username
+
+const punch = (message) => message.reply(`you punch ${getUser(message)}`)
+
+const botActions = (message) => {
+    checkMessage(message)
 
     const commandBody = message.content.slice(prefix.length)
     const arguments = commandBody.split(" ")
     const command = arguments.shift().toLowerCase()
 
-    if (command === "punch") punch(message, arguments)
+    if (command === "punch") punch(message)
 }
 
 
