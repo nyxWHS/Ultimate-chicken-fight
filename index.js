@@ -7,14 +7,30 @@ const prefix = "$"
 
 
 // declaring function
+const getUser = (message) => message.mentions.users.last().username
+const roolDice = () => Math.floor(Math.random() * 6 + 1)
+
 const checkMessage = (message) => {
     if (message.author.bot) return true
     if (!message.content.startsWith(prefix)) return true
 }
 
-const getUser = (message) => message.mentions.users.last().username
-const punch = (message) => message.reply(`You scored ${roolDice()} on the dice.You punched ${getUser(message)}`)
-const roolDice = () => Math.floor(Math.random() * 6 + 1)
+const punch = (message) => {
+    const dice = roolDice()
+    if(dice >= 3)
+        message.reply(`You scored ${dice} on the dice.You punched ${getUser(message)}`)
+    else
+        message.reply(`You scored ${dice} on the dice. FAIL`)
+}
+
+const defend = (message) => {
+    const dice = roolDice()
+
+    if(dice >= 5)
+        message.reply(`You scored ${dice} on the dice. You defend ${getUser(message)} atack`) 
+    else
+        message.reply(`You scored ${dice} on the dice. ${getUser(message)} punched you.`)
+}
 
 const botActions = (message) => {
     if(checkMessage(message)) return
@@ -23,7 +39,8 @@ const botActions = (message) => {
     const arguments = commandBody.split(" ")
     const command = arguments.shift().toLowerCase()
 
-    if (command === "punch") punch(message)
+    if (command === "bater" || command === "punch") punch(message)
+    if (command === "defender" || command === "defend") defend(message)
 }
 
 
